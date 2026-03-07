@@ -27,7 +27,7 @@ local _get_state = function(player)
 end
 
 local _get_song = function(player)
-  local cmd = { 'playerctl', '-p', player, 'metadata', '--format', '{{title}}\n{{artist}}' }
+  local cmd = { 'playerctl', '-p', player, 'metadata', '--format', '{{title}}\n{{artist}}\n{{album}}' }
   local metadata, err = utils.exec_command(cmd)
 
   if err then
@@ -169,8 +169,8 @@ M.current = function(player)
   end
 
   local state = _get_state(player)
-  local title, artist = _get_song(player)
-  return state, title, artist
+  local title, artist, album = _get_song(player)
+  return state, title, artist, album
 end
 
 return M

@@ -141,6 +141,15 @@ local cmds = {
     opts = { nargs = '*' },
     deprecated = 'MusicSetVolume',
   },
+  {
+    name = 'Music',
+    description = 'Open music player TUI',
+    func = function(args)
+      local player = args.fargs[1]
+      require('music.ui').open(player)
+    end,
+    opts = { nargs = '*' },
+  },
 }
 
 local _create_command = function(name, func, opts, deprecated)
