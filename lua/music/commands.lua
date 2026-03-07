@@ -4,7 +4,7 @@ local cmds = {
     name = 'MPlayers',
     description = 'List players',
     func = function()
-      require('music-controls').get_players()
+      require('music').get_players()
     end,
     opts = {},
     deprecated = 'MusicListPlayers',
@@ -14,7 +14,7 @@ local cmds = {
     description = 'Toggle play/pause',
     func = function(args)
       local player = args.fargs[1]
-      require('music-controls').play(player)
+      require('music').play(player)
     end,
     opts = { nargs = '*' },
     deprecated = 'MusicPlay',
@@ -24,7 +24,7 @@ local cmds = {
     description = 'Pause music',
     func = function(args)
       local player = args.fargs[1]
-      require('music-controls').pause(player)
+      require('music').pause(player)
     end,
     opts = { nargs = '*' },
     deprecated = 'MusicPause',
@@ -42,7 +42,7 @@ local cmds = {
         end
       end
 
-      require('music-controls').next(player, amount)
+      require('music').next(player, amount)
     end,
     opts = { nargs = '*' },
     deprecated = 'MusicNext',
@@ -60,7 +60,7 @@ local cmds = {
         end
       end
 
-      require('music-controls').prev(player, amount)
+      require('music').prev(player, amount)
     end,
     opts = { nargs = '*' },
     deprecated = 'MusicPrev',
@@ -70,7 +70,7 @@ local cmds = {
     description = 'Current track',
     func = function(args)
       local player = args.fargs[1]
-      require('music-controls').current(player)
+      require('music').current(player)
     end,
     opts = { nargs = '*' },
     deprecated = 'MusicCurrent',
@@ -80,7 +80,7 @@ local cmds = {
     description = 'Toggle shuffle',
     func = function(args)
       local player = args.fargs[1]
-      require('music-controls').shuffle(player)
+      require('music').shuffle(player)
     end,
     opts = { nargs = '*' },
     deprecated = 'MusicShuffle',
@@ -98,7 +98,7 @@ local cmds = {
         end
       end
 
-      require('music-controls').loop(player, mode)
+      require('music').loop(player, mode)
     end,
     opts = { nargs = '*' },
     deprecated = 'MusicLoop',
@@ -108,7 +108,7 @@ local cmds = {
     description = 'Toggle loop mode',
     func = function(args)
       local player = args.fargs[1]
-      require('music-controls').toggle_loop(player)
+      require('music').toggle_loop(player)
     end,
     opts = { nargs = '*' },
     deprecated = 'MusicLoopToggle',
@@ -118,7 +118,7 @@ local cmds = {
     description = 'Current volume',
     func = function(args)
       local player = args.fargs[1]
-      require('music-controls').get_volume(player)
+      require('music').get_volume(player)
     end,
     opts = { nargs = '*' },
     deprecated = 'MusicCurrentVolume',
@@ -136,7 +136,7 @@ local cmds = {
         end
       end
 
-      require('music-controls').set_volume(player, volume)
+      require('music').set_volume(player, volume)
     end,
     opts = { nargs = '*' },
     deprecated = 'MusicSetVolume',

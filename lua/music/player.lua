@@ -1,4 +1,4 @@
-local utils = require('music-controls.utils')
+local utils = require('music.utils')
 
 local M = {}
 
@@ -13,7 +13,7 @@ end
 M.get_all = function()
   local result, err = utils.exec_command({ 'playerctl', '-l' })
   if err then
-    vim.api.nvim_err_writeln('MusicControls: ' .. err)
+    vim.api.nvim_err_writeln('Music: ' .. err)
     return nil
   end
 
@@ -28,7 +28,7 @@ M.get_volume = function(player)
   local cmd = { 'playerctl', '-p', player, 'volume' }
   local result, err = utils.exec_command(cmd)
   if err then
-    vim.api.nvim_err_writeln('MusicControls: ' .. err)
+    vim.api.nvim_err_writeln('Music: ' .. err)
     return nil
   end
 
@@ -42,13 +42,13 @@ M.set_volume = function(player, volume)
   end
 
   if not _is_valid_volume(volume) then
-    return vim.api.nvim_err_writeln('MusicControls: Invalid volume')
+    return vim.api.nvim_err_writeln('Music: Invalid volume')
   end
 
   local cmd = { 'playerctl', '-p', player, 'volume', volume }
   local _, err = utils.exec_command(cmd)
   if err then
-    vim.api.nvim_err_writeln('MusicControls: ' .. err)
+    vim.api.nvim_err_writeln('Music: ' .. err)
     return nil
   end
 

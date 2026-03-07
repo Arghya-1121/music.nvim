@@ -2,7 +2,7 @@ local M = {}
 
 M.validate_player = function(player)
   if not player then
-    vim.api.nvim_err_writeln('MusicControls: No player found')
+    vim.api.nvim_err_writeln('Music: No player found')
     return false
   end
 

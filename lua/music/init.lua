@@ -1,7 +1,7 @@
-local config = require('music-controls.config')
-local utils = require('music-controls.utils')
-local controls = require('music-controls.controls')
-local player = require('music-controls.player')
+local config = require('music.config')
+local utils = require('music.utils')
+local controls = require('music.controls')
+local player = require('music.player')
 
 local M = {}
 
@@ -18,7 +18,7 @@ M.play = function(_player)
   _player = _player or config.config.default_player
   local result = controls.play(_player)
   if not result then
-    vim.api.nvim_err_writeln('MusicControls: Could not toggle play/pause')
+    vim.api.nvim_err_writeln('Music: Could not toggle play/pause')
   end
 
   utils.sleep(0.25)
@@ -30,7 +30,7 @@ M.pause = function(_player)
   _player = _player or config.config.default_player
   local result = controls.pause(_player)
   if not result then
-    vim.api.nvim_err_writeln('MusicControls: Could not pause')
+    vim.api.nvim_err_writeln('Music: Could not pause')
   end
 
   utils.sleep(0.25)
@@ -44,7 +44,7 @@ M.next = function(_player, amount)
 
   local result = controls.next(_player, amount)
   if not result then
-    vim.api.nvim_err_writeln('MusicControls: Could not skip')
+    vim.api.nvim_err_writeln('Music: Could not skip')
   end
 
   utils.sleep(0.25)
@@ -58,7 +58,7 @@ M.prev = function(_player, amount)
 
   local result = controls.previous(_player, amount)
   if not result then
-    vim.api.nvim_err_writeln('MusicControls: Could not go back')
+    vim.api.nvim_err_writeln('Music: Could not go back')
   end
 
   utils.sleep(0.25)
@@ -76,7 +76,7 @@ M.shuffle = function(_player)
   _player = _player or config.config.default_player
   local result = controls.shuffle(_player)
   if not result then
-    vim.api.nvim_err_writeln('MusicControls: Could not toggle shuffle mode')
+    vim.api.nvim_err_writeln('Music: Could not toggle shuffle mode')
   end
 
   vim.api.nvim_echo({ { string.format('Shuffle mode: %s', result) } }, true, {})
@@ -88,7 +88,7 @@ M.loop = function(_player, mode)
 
   local result = controls.loop(_player, mode)
   if not result then
-    vim.api.nvim_err_writeln('MusicControls: Could not set loop mode')
+    vim.api.nvim_err_writeln('Music: Could not set loop mode')
   end
 
   vim.api.nvim_echo({ { string.format('Loop mode: %s', result) } }, true, {})
@@ -98,7 +98,7 @@ M.toggle_loop = function(_player)
   _player = _player or config.config.default_player
   local result = controls.toggle_loop(_player)
   if not result then
-    vim.api.nvim_err_writeln('MusicControls: Could not toggle loop mode')
+    vim.api.nvim_err_writeln('Music: Could not toggle loop mode')
   end
 
   vim.api.nvim_echo({ { string.format('Loop mode: %s', result) } }, true, {})
@@ -108,7 +108,7 @@ M.get_volume = function(_player)
   _player = _player or config.config.default_player
   local result = player.get_volume(_player)
   if not result then
-    vim.api.nvim_err_writeln('MusicControls: Could not set volume')
+    vim.api.nvim_err_writeln('Music: Could not set volume')
   end
 
   vim.api.nvim_echo({ { string.format('Volume: %s%%', result) } }, true, {})
@@ -120,7 +120,7 @@ M.set_volume = function(_player, vol)
 
   local result = player.set_volume(_player, vol)
   if not result then
-    vim.api.nvim_err_writeln('MusicControls: Could not set volume')
+    vim.api.nvim_err_writeln('Music: Could not set volume')
   end
 
   vim.api.nvim_echo({ { string.format('Volume: %s%%', result) } }, true, {})

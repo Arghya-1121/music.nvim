@@ -1,4 +1,4 @@
-local utils = require('music-controls.utils')
+local utils = require('music.utils')
 
 local M = {}
 
@@ -7,7 +7,7 @@ local _execute = function(player, operation, amount)
   for _ = 1, amount or 1 do
     local _, err = utils.exec_command(cmd)
     if err then
-      vim.api.nvim_err_writeln('MusicControls: ' .. err)
+      vim.api.nvim_err_writeln('Music: ' .. err)
       return nil
     end
   end
@@ -44,7 +44,7 @@ local _get_loop_mode = function(player)
   local cmd = { 'playerctl', '-p', player, 'loop' }
   local mode, err = utils.exec_command(cmd)
   if err then
-    vim.api.nvim_err_writeln('MusicControls: Failed to get loop mode')
+    vim.api.nvim_err_writeln('Music: Failed to get loop mode')
     return nil
   end
 
@@ -55,7 +55,7 @@ local _set_loop_mode = function(player, mode)
   local cmd = { 'playerctl', '-p', player, 'loop', mode }
   local _, err = utils.exec_command(cmd)
   if err then
-    vim.api.nvim_err_writeln('MusicControls: Failed to set loop mode')
+    vim.api.nvim_err_writeln('Music: Failed to set loop mode')
     return nil
   end
 
@@ -66,7 +66,7 @@ local _get_shuffle_mode = function(player)
   local cmd = { 'playerctl', '-p', player, 'shuffle' }
   local mode, err = utils.exec_command(cmd)
   if err then
-    vim.api.nvim_err_writeln('MusicControls: Failed to get shuffle mode')
+    vim.api.nvim_err_writeln('Music: Failed to get shuffle mode')
     return nil
   end
 
@@ -77,7 +77,7 @@ local _set_shuffle_mode = function(player, mode)
   local cmd = { 'playerctl', '-p', player, 'shuffle', mode }
   local _, err = utils.exec_command(cmd)
   if err then
-    vim.api.nvim_err_writeln('MusicControls: Failed to set shuffle mode')
+    vim.api.nvim_err_writeln('Music: Failed to set shuffle mode')
     return nil
   end
 
