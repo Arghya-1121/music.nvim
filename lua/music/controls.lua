@@ -31,13 +31,12 @@ local _get_song = function(player)
   local metadata, err = utils.exec_command(cmd)
 
   if err then
-    return 'Unknown', 'Unknown'
+    return 'Unknown', 'Unknown', 'Unknown'
   end
 
-  local title = metadata and metadata:match('([^\n]+)') or 'Unknown'
-  local artist = metadata and metadata:match('\n([^\n]+)') or 'Unknown'
+  title, artist, album = metadata:match('([^\n]+)\n([^\n]+)\n([^\n]+)')
 
-  return title, artist
+  return title, artist, album
 end
 
 local _get_loop_mode = function(player)
