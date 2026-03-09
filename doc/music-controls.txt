@@ -1,4 +1,4 @@
-*music-controls*  Control your favorite music players with ease.
+*music*  Control your favorite music players with ease.
 
 Minimum version of Neovim: nightly
 
@@ -7,14 +7,14 @@ Author(s):
 
                                                         Table of Contents: gO
 ===============================================================================
-INTRODUCTION                                             *music-controls-intro*
+INTRODUCTION                                                      *music-intro*
 
 Music Controls provides an intuitive way to control music players directly
 from Neovim. Whether you’re managing playlists or adjusting volume, this
 plugin integrates seamlessly with your workflow to keep you in the zone.
 
 ===============================================================================
-COMMANDS                                              *music-controls-commands*
+COMMANDS                                                       *music-commands*
 
                                                                     *:MPlayers*
 :MPlayers
@@ -97,7 +97,7 @@ Set the volume to a specific value.
 - {volume} Volume as a float between 0 and 1.
 
 ===============================================================================
-DEPRECATIONS                                      *music-controls-deprecations*
+DEPRECATIONS                                               *music-deprecations*
 
 The following commands have been marked as deprecated and will be removed in
 future versions of the plugin. Please update your configuration to use the
@@ -116,9 +116,9 @@ new commands.
 `:MusicVolumeSet`            Superseded by `:MVolumeSet`
 
 ===============================================================================
-CONFIGURATION                                    *music-controls-configuration*
+CONFIGURATION                                             *music-configuration*
 
-                                         *music-controls-configuration-options*
+                                                  *music-configuration-options*
 CONFIGURATION OPTIONS
 
 Music Controls requires minimal configuration. However, you can set a
@@ -132,13 +132,13 @@ Default configuration:
   }
 <
 
-                                           *music-controls-configuration-setup*
+                                                    *music-configuration-setup*
 CONFIGURATION SETUP
 
 To configure the default player, add the following to your Neovim setup:
 
 >
-  require('music-controls').setup {
+  require('music').setup {
     default_player = 'spotify',
   }
 <
@@ -146,7 +146,7 @@ To configure the default player, add the following to your Neovim setup:
 This setup ensures commands like `:MPlay` automatically target the specified
 default player without requiring you to specify the player each time.
 
-                             *music-controls-configuration-recommended-keymaps*
+                                      *music-configuration-recommended-keymaps*
 CONFIGURATION RECOMMENDED KEYMAPS
 
 This plugin does not include default keymaps. Below are recommended keymaps:
@@ -163,7 +163,7 @@ This plugin does not include default keymaps. Below are recommended keymaps:
 <
 
 ===============================================================================
-STATUSLINE INTEGRATION                  *music-controls-statusline-integration*
+STATUSLINE INTEGRATION                           *music-statusline-integration*
 
 Music Controls integrates with statusline plugins such as `lualine` or
 `galaxyline`. Below is an example of integrating with `lualine`:
@@ -171,7 +171,7 @@ Music Controls integrates with statusline plugins such as `lualine` or
 >
   require('lualine').setup {
     sections = {
-      lualine_x = { require('music-controls')._statusline },
+      lualine_x = { require('music')._statusline },
     }
   }
 <
