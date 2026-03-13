@@ -1,4 +1,4 @@
-# Music Controls
+# Music
 
 Control your favorite music players with ease from within Neovim.
 
@@ -29,18 +29,18 @@ Control your favorite music players with ease from within Neovim.
 
 ## Description
 
-Music Controls is a Neovim plugin that allows you to easily control your favorite
+Music is a Neovim plugin that allows you to easily control your favorite
 music players from within Neovim. The plugin basically acts as a wrapper around
 `playerctl`, a command-line utility that can control media players.
-This makes almost any music player compatible with Music Controls, ranging from
+This makes almost any music player compatible with Music, ranging from
 Spotify to VLC, etc.
 
-I created Music Controls to make it more convenient and efficient to control my
+I created Music to make it more convenient and efficient to control my
 music player while working within Neovim. Instead of constantly switching workspaces
 or opening a terminal to control my music player, I can use this plugin to do it
 all within Neovim. You might say that I'm lazy, some say I'm not 😉!
 
-I hope that others who have similar needs will find Music Controls useful as well.
+I hope that others who have similar needs will find Music useful as well.
 
 ## Installation
 
@@ -49,13 +49,13 @@ the plugin. Other plugin managers can be used as well.
 
 ```lua
 {
-  'AntonVanAssche/music-controls.nvim',
+  'Arghya-1121/music.nvim',
 }
 ```
 
 ### Dependencies
 
-Music Controls requires `playerctl`  to be installed in order to work properly.
+Music requires `playerctl`  to be installed in order to work properly.
 
 ## Configuration
 
@@ -64,7 +64,7 @@ to your `init.lua` file:
 
 ```lua
 {
-  'AntonVanAssche/music-controls.nvim',
+  'Arghya-1121/music.nvim',
   opts = {
     default_player = 'spotify'
   }
@@ -72,7 +72,7 @@ to your `init.lua` file:
 ```
 
 The example above sets Spotify as the default music player.
-If you don't specify a default player, Music Controls requires you to specify a player.
+If you don't specify a default player, Music requires you to specify a player.
 Refer to the [commands](#commands) section for more information.
 
 ## Commands
@@ -169,13 +169,13 @@ For more information, refer to the documentation by typing `:h MusicControls`.
 
 > Note: This feature requires a `default_player` to be configured.
 
-Music Controls provides integration with statusline plugins such as
+Music provides integration with statusline plugins such as
 [lualine](https://github.com/nvim-lualine/lualine.nvim) and [galaxyline](https://github.com/nvimdev/galaxyline.nvim),
 allowing you to display the current music player status directly within your statusline.
 
 ### Example (lualine)
 
-This example demonstrates how to integrate Music Controls with lualine.
+This example demonstrates how to integrate Music with lualine.
 Other statusline plugins can be used as well, and the process should be similar.
 Refer to the documentation of your statusline plugin for more information.
 
@@ -183,19 +183,19 @@ Refer to the documentation of your statusline plugin for more information.
 require('lualine').setup {
   sections = {
     lualine_x = {
-      require("music-controls")._statusline,
+      require("music")._statusline,
     }
   }
 }
 ```
 
-An example of the statusline with Music Controls integrated:
+An example of the statusline with Music integrated:
 
 ![statusline preview](/assets/statusline_preview.png)
 
 ## License
 
-Music Controls is licensed under the MIT License. See the [LICENSE.md](./LICENSE.md)
+Music is licensed under the MIT License. See the [LICENSE.md](./LICENSE.md)
 file for more information.
 
 ## Contributing
