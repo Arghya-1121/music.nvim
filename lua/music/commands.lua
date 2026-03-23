@@ -9,6 +9,7 @@ local cmds = {
     opts = {},
     deprecated = 'MusicListPlayers',
   },
+
   {
     name = 'MPlay',
     description = 'Toggle play/pause',
@@ -19,6 +20,7 @@ local cmds = {
     opts = { nargs = '*' },
     deprecated = 'MusicPlay',
   },
+
   {
     name = 'MPause',
     description = 'Pause music',
@@ -29,6 +31,7 @@ local cmds = {
     opts = { nargs = '*' },
     deprecated = 'MusicPause',
   },
+
   {
     name = 'MNext',
     description = 'Next track',
@@ -47,6 +50,7 @@ local cmds = {
     opts = { nargs = '*' },
     deprecated = 'MusicNext',
   },
+
   {
     name = 'MPrev',
     description = 'Previous track',
@@ -65,6 +69,7 @@ local cmds = {
     opts = { nargs = '*' },
     deprecated = 'MusicPrev',
   },
+
   {
     name = 'MCurrent',
     description = 'Current track',
@@ -75,6 +80,7 @@ local cmds = {
     opts = { nargs = '*' },
     deprecated = 'MusicCurrent',
   },
+
   {
     name = 'MShuffle',
     description = 'Toggle shuffle',
@@ -85,6 +91,7 @@ local cmds = {
     opts = { nargs = '*' },
     deprecated = 'MusicShuffle',
   },
+
   {
     name = 'MLoop',
     description = 'Loop mode',
@@ -103,6 +110,7 @@ local cmds = {
     opts = { nargs = '*' },
     deprecated = 'MusicLoop',
   },
+
   {
     name = 'MLoopToggle',
     description = 'Toggle loop mode',
@@ -113,6 +121,7 @@ local cmds = {
     opts = { nargs = '*' },
     deprecated = 'MusicLoopToggle',
   },
+
   {
     name = 'MVolumeGet',
     description = 'Current volume',
@@ -123,6 +132,7 @@ local cmds = {
     opts = { nargs = '*' },
     deprecated = 'MusicCurrentVolume',
   },
+
   {
     name = 'MVolumeSet',
     description = 'Set volume',
@@ -141,12 +151,41 @@ local cmds = {
     opts = { nargs = '*' },
     deprecated = 'MusicSetVolume',
   },
+
   {
     name = 'Music',
     description = 'Open music player TUI',
     func = function(args)
       local player = args.fargs[1]
       require('music.ui').open(player)
+    end,
+    opts = { nargs = '*' },
+  },
+
+  {
+    name = 'RadioChannel',
+    description = 'Open Radio',
+    func = function()
+      require('music.radio').get_channel()
+    end,
+    opts = { nargs = '*' },
+  },
+
+  {
+    name = 'Radio',
+    description = 'Play Radio',
+    func = function(args)
+      local index = tonumber(args.fargs[1])
+      require('music.radio').play_radio(index)
+    end,
+    opts = { nargs = 1 },
+  },
+
+  {
+    name = 'RadioStop',
+    description = 'Stop Radio',
+    func = function()
+      require('music.radio').stop_radio()
     end,
     opts = { nargs = '*' },
   },
