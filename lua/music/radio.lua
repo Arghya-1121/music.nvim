@@ -1,8 +1,8 @@
 local utils = require('music.utils')
 local M = {}
 
-M.radio_paradise = 'http://stream.radioparadise.com/'
-M.radio_player_pid = nil
+local radio_paradise = 'http://stream.radioparadise.com/'
+local radio_player_pid = nil
 
 vim.api.nvim_set_hl(0, 'Heading', { fg = '#BAD7F2' })
 vim.api.nvim_set_hl(0, 'Channel', { fg = '#FAF3DD' })
@@ -21,32 +21,33 @@ M.get_channel = function()
   }, false, {})
 end
 
-M.get_stream = function(index)
+local get_stream = function(index)
   if index == 1 then
-    return M.radio_paradise .. 'flac'
+    return radio_paradise .. 'flac'
   elseif index == 2 then
-    return M.radio_paradise .. 'mellow-flac'
+    return radio_paradise .. 'mellow-flac'
   elseif index == 3 then
-    return M.radio_paradise .. 'rock-flac'
+    return radio_paradise .. 'rock-flac'
   elseif index == 4 then
-    return M.radio_paradise .. 'global-flac'
+    return radio_paradise .. 'global-flac'
   elseif index == 5 then
-    return M.radio_paradise .. 'beyond-flac'
+    return radio_paradise .. 'beyond-flac'
   elseif index == 6 then
-    return M.radio_paradise .. 'serenity'
+    return radio_paradise .. 'serenity'
   elseif index == 7 then
-    return M.radio_paradise .. 'radio2050-flac'
+    return radio_paradise .. 'radio2050-flac'
   elseif index == 8 then
-    return M.radio_paradise .. 'kfat-flac'
+    return radio_paradise .. 'kfat-flac'
   else
-    vim.api.nvim_err_writeln('Please ender a valid channel id. To know the channel id run :RadioChannel')
+    vim.notify('Please ender a valid channel id. To know the channel id run :RadioChannel', vim.log.levels.ERROR)
+    M.get_channel()
     return nil
   end
 end
 
 M.play_radio = function(index)
   local stop = M.stop_radio()
-  local stream = M.get_stream(index)
+  local stream = get_stream(index)
 
   --Return if the stream is null
   if stream == nil then
@@ -65,26 +66,26 @@ M.play_radio = function(index)
   vim.defer_fn(function()
     local pid = M.find_player_pid()
     if pid == nil then
-      vim.api.nvim_err_writeln(
-        'Failed to get the pid of the player. The player is now running on its own. Need to kill the process manually. You can simply run "pkill mpv" to do so'
+      vim.notify(
+        'Failed to get the pid of the player. The player is now running on its own. Need to kill the process manually. You can simply run "pkill mpv" to do so',
+        vim.log.levels.ERROR
       )
     end
-    M.radio_player_pid = pid
+    radio_player_pid = pid
   end, 500)
 end
 
 M.stop_radio = function()
   -- If no radio was playing before do nothing
-  if M.radio_player_pid == nil then
+  if radio_player_pid == nil then
     return true
   end
 
   local player_pid = M.find_player_pid()
 
   -- If the proecess kill by the user manually
-  if player_pid == nil or player_pid ~= M.radio_player_pid then
-    vim.api.nvim_err_writeln('Player PID not found or mismatched.')
-    M.radio_player_pid = nil
+  if player_pid == nil or player_pid ~= radio_player_pid then
+    radio_player_pid = nil
     return true
   end
 
@@ -92,10 +93,10 @@ M.stop_radio = function()
   local trimmed_pid = vim.trim and vim.trim(tostring(player_pid)) or tostring(player_pid):gsub('%s+', '')
   local _, err = utils.exec_command({ 'kill', trimmed_pid })
   if err then
-    vim.api.nvim_err_writeln('Failed to stop the radio:' .. err)
+    vim.notify('Failed to stop the radio:' .. err, vim.log.levels.ERROR)
     return false
   else
-    M.radio_player_pid = nil
+    radio_player_pid = nil
     return true
   end
 end

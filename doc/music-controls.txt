@@ -4,6 +4,7 @@ Minimum version of Neovim: nightly
 
 Author(s):
   Anton Van Assche <https://github.com/AntonVanAssche/>
+  Arghya Sarkar <https://github.com/Arghya-1121>
 
                                                         Table of Contents: gO
 ===============================================================================

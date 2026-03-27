@@ -178,7 +178,7 @@ local cmds = {
       local index = tonumber(args.fargs[1])
       require('music.radio').play_radio(index)
     end,
-    opts = { nargs = 1 },
+    opts = { nargs = '*' },
   },
 
   {
@@ -187,7 +187,7 @@ local cmds = {
     func = function()
       require('music.radio').stop_radio()
     end,
-    opts = { nargs = '*' },
+    opts = { nargs = 0 },
   },
 }
 
